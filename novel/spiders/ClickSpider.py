@@ -13,7 +13,7 @@ class AllNovelSpider(Spider):
     Chrome/53.0.2785.143 Safari/537.36'
     }
 
-    start_urls = ['http://book.zongheng.com/store/c0/c0/b0/u1/p%d/v9/s9/t0/u0/i0/ALL.html' % i for i in range(1, 6, 1)]
+    start_urls = ['http://book.zongheng.com/store/c0/c0/b0/u1/p%d/v9/s9/t0/u0/i0/ALL.html' % i for i in range(1, 10, 1)]
 
     def parse(self, response):
         item = AllClickItem()
@@ -22,7 +22,7 @@ class AllNovelSpider(Spider):
         for novel in novels:
             item['name'] = novel.xpath('.//span[@class="bookname"]/a/text()').extract()[0]
             item['author'] = novel.xpath('.//span[@class="author"]/a/text()').extract()[0]
-            item['click'] = re.findall(r"\d+\.?\d*", novel.xpath('.//span[@class="count"]/text()').extract()[0])
+            item['count'] = re.findall(r"\d+\.?\d*", novel.xpath('.//span[@class="count"]/text()').extract()[0])
 
             yield item
 
@@ -34,7 +34,7 @@ class MouthNovelSpider(Spider):
     Chrome/53.0.2785.143 Safari/537.36'
     }
 
-    start_urls = ['http://book.zongheng.com/store/c0/c0/b0/u6/p%d/v9/s9/t0/u0/i0/ALL.html' % i for i in range(1, 6, 1)]
+    start_urls = ['http://book.zongheng.com/store/c0/c0/b0/u6/p%d/v9/s9/t0/u0/i0/ALL.html' % i for i in range(1, 10, 1)]
 
     def parse(self, response):
         item = MouthClickItem()
@@ -43,7 +43,7 @@ class MouthNovelSpider(Spider):
         for novel in novels:
             item['name'] = novel.xpath('.//span[@class="bookname"]/a/text()').extract()[0]
             item['author'] = novel.xpath('.//span[@class="author"]/a/text()').extract()[0]
-            item['click'] = re.findall(r"\d+\.?\d*", novel.xpath('.//span[@class="count"]/text()').extract()[0])
+            item['count'] = re.findall(r"\d+\.?\d*", novel.xpath('.//span[@class="count"]/text()').extract()[0])
 
             yield item
 
@@ -55,7 +55,7 @@ class WeekNovelSpider(Spider):
     Chrome/53.0.2785.143 Safari/537.36'
     }
 
-    start_urls = ['http://book.zongheng.com/store/c0/c0/b0/u9/p%d/v9/s9/t0/u0/i0/ALL.html' % i for i in range(1, 6, 1)]
+    start_urls = ['http://book.zongheng.com/store/c0/c0/b0/u9/p%d/v9/s9/t0/u0/i0/ALL.html' % i for i in range(1, 10, 1)]
 
     def parse(self, response):
         item = WeekClickItem()
@@ -64,7 +64,7 @@ class WeekNovelSpider(Spider):
         for novel in novels:
             item['name'] = novel.xpath('.//span[@class="bookname"]/a/text()').extract()[0]
             item['author'] = novel.xpath('.//span[@class="author"]/a/text()').extract()[0]
-            item['click'] = re.findall(r"\d+\.?\d*", novel.xpath('.//span[@class="count"]/text()').extract()[0])
+            item['count'] = re.findall(r"\d+\.?\d*", novel.xpath('.//span[@class="count"]/text()').extract()[0])
 
             yield item
 
@@ -76,15 +76,15 @@ class DayNovelSpider(Spider):
     Chrome/53.0.2785.143 Safari/537.36'
     }
 
-    start_urls = ['http://book.zongheng.com/store/c0/c0/b0/u12/p%d/v9/s9/t0/u0/i0/ALL.html' % i for i in range(1, 6, 1)]
+    start_urls = ['http://book.zongheng.com/store/c0/c0/b0/u12/p%d/v9/s9/t0/u0/i0/ALL.html' % i for i in range(1, 10, 1)]
 
     def parse(self, response):
         item = DayClickItem()
-        novels = response.xpath('//ul[@class="main_con"]/li')  # 月点击
+        novels = response.xpath('//ul[@class="main_con"]/li')  # 日点击
 
         for novel in novels:
             item['name'] = novel.xpath('.//span[@class="bookname"]/a/text()').extract()[0]
             item['author'] = novel.xpath('.//span[@class="author"]/a/text()').extract()[0]
-            item['click'] = re.findall(r"\d+\.?\d*", novel.xpath('.//span[@class="count"]/text()').extract()[0])
+            item['count'] = re.findall(r"\d+\.?\d*", novel.xpath('.//span[@class="count"]/text()').extract()[0])
 
             yield item

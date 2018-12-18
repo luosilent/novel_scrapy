@@ -18,6 +18,8 @@ ITEM_PIPELINES = {
 }
 
 COMMANDS_MODULE = 'novel.commands'
+
+# NEWSPIDER_MODULE = 'QiDian.spiders'
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 # USER_AGENT = 'novel (+http://www.yourdomain.com)'
 
